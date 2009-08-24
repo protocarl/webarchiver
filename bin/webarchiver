@@ -1,0 +1,38 @@
+#!/usr/bin/env macruby
+
+unless Kernel.respond_to? :framework
+  exec 'macruby', *ARGV.unshift(__FILE__)
+end
+
+$LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib')
+
+require 'webarchiver'
+require 'optparse'
+
+options = {
+  :seconds => 120
+}
+
+ARGV.options do |opts|
+  opts.banner = "Usage: #{File.basename($PROGRAM_NAME)} [OPTIONS] URL [FILE]"
+
+  opts.on( '-t', '--timeout SECONDS', Integer, 'Timeout in seconds' ) do |seconds|
+    options[:seconds] = seconds
+  end
+
+  opts.on( '-h', '--help', 'Show this message.' ) do
+    puts opts
+    exit
+  end
+
+  begin
+    opts.parse!
+    options[:url]  = ARGV.shift or raise
+    options[:file] = ARGV.shift
+  rescue
+    puts opts
+    exit
+  end
+end
+
+WebArchiver.archive options[:url], options[:file], options[:seconds]
