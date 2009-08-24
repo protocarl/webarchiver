@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "webarchiver"
     gem.summary = %Q{MacRuby command line utility to create Safari webarchives}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.description = %Q{MacRuby command line utility to create Safari webarchives}
     gem.email = "badcarl@gmail.com"
     gem.homepage = "http://github.com/badcarl/webarchiver"
     gem.authors = ["Carl Porth"]
