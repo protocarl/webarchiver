@@ -28,7 +28,8 @@ Gem::Specification.new do |s|
      "bin/webarchiver",
      "lib/webarchiver.rb",
      "test/test_helper.rb",
-     "test/webarchiver_test.rb"
+     "test/webarchiver_test.rb",
+     "webarchiver.gemspec"
   ]
   s.homepage = %q{http://github.com/badcarl/webarchiver}
   s.rdoc_options = ["--charset=UTF-8"]
