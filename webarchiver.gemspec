@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{webarchiver}
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Carl Porth"]
-  s.date = %q{2009-08-24}
+  s.date = %q{2009-08-27}
   s.default_executable = %q{webarchiver}
   s.description = %q{MacRuby command line utility to create Safari webarchives}
   s.email = %q{badcarl@gmail.com}
