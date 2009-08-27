@@ -10,14 +10,19 @@ require 'webarchiver'
 require 'optparse'
 
 options = {
-  :seconds => 120
+  :seconds => 120,
+  :show => false
 }
 
 ARGV.options do |opts|
   opts.banner = "Usage: #{File.basename($PROGRAM_NAME)} [OPTIONS] URL [FILE]"
 
-  opts.on( '-t', '--timeout SECONDS', Integer, 'Timeout in seconds' ) do |seconds|
+  opts.on( '-t', '--timeout SECONDS', Integer, 'Set a timeout in seconds.' ) do |seconds|
     options[:seconds] = seconds
+  end
+
+  opts.on( '-s', '--show', 'Show location of downloaded file.' ) do
+    options[:show] = true
   end
 
   opts.on( '-h', '--help', 'Show this message.' ) do
@@ -35,4 +40,6 @@ ARGV.options do |opts|
   end
 end
 
-WebArchiver.archive options[:url], options[:file], options[:seconds]
+saved_file = WebArchiver.archive options[:url], options[:file], options[:seconds]
+
+puts File.expand_path(saved_file) if options[:show]

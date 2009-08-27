@@ -35,6 +35,8 @@ class WebArchiver
       runLoop.runMode(NSDefaultRunLoopMode, beforeDate:toDate)
       break if NSDate.date.earlierDate(toDate) == toDate
     end
+
+    @saved_file
   end
 
   def done?
@@ -44,10 +46,10 @@ class WebArchiver
   # frameLoadDelegate methods
 
   def webView sender, didFinishLoadForFrame:frame
-    data = frame.dataSource.webArchive.data
-    file = cleanseFilename(@file || frame.dataSource.pageTitle)
+    data        = frame.dataSource.webArchive.data
+    @saved_file = cleanseFilename(@file || frame.dataSource.pageTitle)
 
-    data.writeToFile(file, atomically:false)
+    data.writeToFile(@saved_file, atomically:false)
 
     @done = true
  end
